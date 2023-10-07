@@ -31,5 +31,4 @@ public:
 	SCHEMA_FIELD(CCSPlayerController_ActionTrackingServices*, m_pActionTrackingServices)
 	SCHEMA_FIELD(int, m_iScore)
 	SCHEMA_FIELD(int, m_iMVPs)
-	SCHEMA_FIELD(char, m_szClanName)
 };
