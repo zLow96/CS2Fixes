@@ -303,7 +303,12 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	if (!player)
 		return;
 
-	CCSPlayerController *pController = player->m_iScore(0);
+	player->m_pActionTrackingServices->m_matchStats().m_iKills = 0;
+	player->m_pActionTrackingServices->m_matchStats().m_iDeaths = 0;
+	player->m_pActionTrackingServices->m_matchStats().m_iAssists = 0;
+	player->m_pActionTrackingServices->m_matchStats().m_iDamage = 0;
+
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
 
 // Lookup a weapon classname in the weapon map and "initialize" it.
