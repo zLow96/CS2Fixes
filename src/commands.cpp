@@ -307,7 +307,6 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	player->m_pActionTrackingServices->m_matchStats().m_iDeaths = 0;
 	player->m_pActionTrackingServices->m_matchStats().m_iAssists = 0;
 	player->m_pActionTrackingServices->m_matchStats().m_iDamage = 0;
-	player->m_iScore = 0;
 
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
