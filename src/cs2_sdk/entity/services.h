@@ -55,6 +55,14 @@ public:
 	DECLARE_SCHEMA_CLASS(CPlayer_MovementServices);
 };
 
+class CCSPlayerController
+{
+public:
+	DECLARE_SCHEMA_CLASS(CCSPlayerController);
+
+	SCHEMA_FIELD(int, m_iScore)
+};
+
 class CCSPlayerController_InGameMoneyServices
 {
 public:
