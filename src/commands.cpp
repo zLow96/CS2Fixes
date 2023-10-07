@@ -165,16 +165,6 @@ CON_COMMAND_CHAT(rs, "reset your score")
 
 	ClientPrint(player, HUD_PRINTTALK, " \7[\1EUROPA\7] \1Ti-ai resetat scorul cu succes !");
 }
-
-CON_COMMAND_CHAT(tag, "set a clan tag")
-{
-	if (!player)
-		return;
-
-	char tag[32] = "caca";
-	player->m_szClanName(tag);
-}
-
 // Lookup a weapon classname in the weapon map and "initialize" it.
 // Both m_bInitialized and m_iItemDefinitionIndex need to be set for a weapon to be pickable and not crash clients,
 // and m_iItemDefinitionIndex needs to be the correct ID from weapons.vdata so the gun behaves as it should.
