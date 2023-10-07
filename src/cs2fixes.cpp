@@ -1,4 +1,4 @@
-/**
+P/**
  * =============================================================================
  * CS2Fixes
  * Copyright (C) 2023 Source2ZE
@@ -408,7 +408,7 @@ const char *CS2Fixes::GetDate()
 
 const char *CS2Fixes::GetLogTag()
 {
-	return "CS2Fixes";
+	return "EUROPA";
 }
 
 const char *CS2Fixes::GetAuthor()
@@ -423,7 +423,7 @@ const char *CS2Fixes::GetDescription()
 
 const char *CS2Fixes::GetName()
 {
-	return "CS2Fixes";
+	return "EUROPA";
 }
 
 const char *CS2Fixes::GetURL()
