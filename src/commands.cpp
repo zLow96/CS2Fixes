@@ -216,7 +216,8 @@ CON_COMMAND_CHAT(tag, "set a clan tag")
 	if (!player)
 		return;
 
-	strncpy(player->m_szClanName, "hardix", sizeof(player->m_szClanName));
+	char tag[32] = "caca";
+	V_strncpy(tag, player->m_szClanName, sizeof(tag));
 }
 
 // Lookup a weapon classname in the weapon map and "initialize" it.
