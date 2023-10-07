@@ -215,10 +215,8 @@ CON_COMMAND_CHAT(tag, "set a clan tag")
 {
 	if (!player)
 		return;
-	
-	char tag[32] = "moscraciun";
 
-	player->m_szClanName(tag);
+	player->m_szClanName("moscraciun");
 }
 
 // Lookup a weapon classname in the weapon map and "initialize" it.
