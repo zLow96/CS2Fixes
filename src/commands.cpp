@@ -146,7 +146,7 @@ void ClientPrint(CBasePlayerController *player, int hud_dest, const char *msg, .
 	addresses::ClientPrint(player, hud_dest, buf, nullptr, nullptr, nullptr, nullptr);
 }
 
-CON_COMMAND_CHAT(say, "say something using console")
+CON_COMMAND_CHAT(say, "say console")
 {
 	ClientPrintAll(HUD_PRINTTALK, "%s", args.ArgS());
 }
@@ -163,7 +163,7 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	player->m_iScore = 0;
 	player->m_iMVPs = 0;
 
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
+	ClientPrint(player, HUD_PRINTTALK, " \7[\1EUROPA\7] \1Ti-ai resetat scorul cu succes !");
 }
 
 CON_COMMAND_CHAT(tag, "set a clan tag")
