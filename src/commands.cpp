@@ -172,17 +172,6 @@ CON_COMMAND_CHAT(say, "say something using console")
 	ClientPrintAll(HUD_PRINTTALK, "%s", args.ArgS());
 }
 
-CON_COMMAND_CHAT(takemoney, "take your money")
-{
-	if (!player)
-		return;
-
-	int amount = atoi(args[1]);
-	int money = player->m_pInGameMoneyServices->m_iAccount;
-
-	player->m_pInGameMoneyServices->m_iAccount = money - amount;
-}
-
 CON_COMMAND_CHAT(message, "message someone")
 {
 	if (!player)
@@ -207,97 +196,6 @@ CON_COMMAND_CHAT(message, "message someone")
 	UTIL_SayTextFilter(filter, buf, nullptr, 0);
 }
 
-CON_COMMAND_CHAT(sethealth, "set your health")
-{
-	if (!player)
-		return;
-
-	int health = atoi(args[1]);
-
-	Z_CBaseEntity *pEnt = (Z_CBaseEntity *)player->GetPawn();
-
-	pEnt->m_iHealth = health;
-
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Your health is now %d", health);
-}
-
-CON_COMMAND_CHAT(test_target, "test string targetting")
-{
-	if (!player)
-		return;
-
-	int iCommandPlayer = player->GetPlayerSlot();
-	int iNumClients = 0;
-	int pSlots[MAXPLAYERS];
-
-	g_playerManager->TargetPlayerString(iCommandPlayer, args[1], iNumClients, pSlots);
-
-	for (int i = 0; i < iNumClients; i++)
-	{
-		CBasePlayerController* pTarget = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(pSlots[i] + 1));
-
-		if (!pTarget)
-			continue;
-
-		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Targeting %s", pTarget->GetPlayerName());
-		Message("Targeting %s\n", pTarget->GetPlayerName());
-	}
-}
-
-CON_COMMAND_CHAT(getorigin, "get your origin")
-{
-	if (!player)
-		return;
-
-	Vector vecAbsOrigin = player->GetPawn()->GetAbsOrigin();
-
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Your origin is %f %f %f", vecAbsOrigin.x, vecAbsOrigin.y, vecAbsOrigin.z);
-}
-
-CON_COMMAND_CHAT(setorigin, "set your origin")
-{
-	if (!player)
-		return;
-
-	CBasePlayerPawn *pPawn = player->GetPawn();
-	Vector vecNewOrigin;
-	V_StringToVector(args.ArgS(), vecNewOrigin);
-
-	pPawn->SetAbsOrigin(vecNewOrigin);
-
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Your origin is now %f %f %f", vecNewOrigin.x, vecNewOrigin.y, vecNewOrigin.z);
-}
-
-CON_COMMAND_CHAT(getstats, "get your stats")
-{
-	if (!player)
-		return;
-
-	CSMatchStats_t *stats = &player->m_pActionTrackingServices->m_matchStats();
-
-	ClientPrint(player, HUD_PRINTCENTER, 
-		"Kills: %i\n"
-		"Deaths: %i\n"
-		"Assists: %i\n"
-		"Damage: %i"
-		, stats->m_iKills.Get(), stats->m_iDeaths.Get(), stats->m_iAssists.Get(), stats->m_iDamage.Get());
-
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Kills: %d", stats->m_iKills.Get());
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Deaths: %d", stats->m_iDeaths.Get());
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Assists: %d", stats->m_iAssists.Get());
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"Damage: %d", stats->m_iDamage.Get());
-}
-
-CON_COMMAND_CHAT(setkills, "set your kills")
-{
-	if (!player)
-		return;
-
-	player->m_pActionTrackingServices->m_matchStats().m_iKills = atoi(args[1]);
-
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You have set your kills to %d.", atoi(args[1]));
-}
-
 CON_COMMAND_CHAT(rs, "reset your score")
 {
 	if (!player)
@@ -308,6 +206,7 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	player->m_pActionTrackingServices->m_matchStats().m_iAssists = 0;
 	player->m_pActionTrackingServices->m_matchStats().m_iDamage = 0;
 	player->m_iScore = 0;
+	player->m_iMVPs = 0;
 
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
