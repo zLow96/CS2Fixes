@@ -298,6 +298,14 @@ CON_COMMAND_CHAT(setkills, "set your kills")
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You have set your kills to %d.", atoi(args[1]));
 }
 
+CON_COMMAND_CHAT(rs, "reset your score")
+{
+	if (!player)
+		return;
+
+	CCSPlayerController *pController = player->m_iScore(0);
+}
+
 // Lookup a weapon classname in the weapon map and "initialize" it.
 // Both m_bInitialized and m_iItemDefinitionIndex need to be set for a weapon to be pickable and not crash clients,
 // and m_iItemDefinitionIndex needs to be the correct ID from weapons.vdata so the gun behaves as it should.
